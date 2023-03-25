@@ -1,5 +1,8 @@
 
+using HotelListingApi.Configuration;
+using HotelListingApi.Contracts;
 using HotelListingApi.Data;
+using HotelListingApi.Repository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -33,6 +36,11 @@ public class Program
         {
             lx.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration);
         });
+
+        builder.Services.AddAutoMapper(typeof(MapperConfig));
+
+        builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRespository<>));
+        builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 
 
         var app = builder.Build();
