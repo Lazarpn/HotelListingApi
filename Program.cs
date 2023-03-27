@@ -41,6 +41,8 @@ public class Program
 
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRespository<>));
         builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+        builder.Services.AddScoped<IHotelsRepository, HotelsRepository>();
+
 
 
         var app = builder.Build();
